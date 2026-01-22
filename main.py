@@ -555,8 +555,8 @@ async def process_product_stock(message: types.Message, state: FSMContext):
         await message.answer('❌ Неверный формат количества. Введите целое число:')
 
 async def get_user_count():
-    from database import DB_PATH  # Импортируем здесь
-    async with aiosqlite.connect(DB_PATH) as connection:  # Используем другое имя переменной
+    from database import DB_PATH
+    async with aiosqlite.connect(DB_PATH) as connection:
         async with connection.execute('SELECT COUNT(*) FROM users') as cursor:
             result = await cursor.fetchone()
             return result[0] if result else 0
